@@ -9,8 +9,10 @@ import javax.swing.ListCellRenderer;
 
 public class CustomListRenderer extends JLabel implements ListCellRenderer<Combatant> {
 	
+	private static final long serialVersionUID = 1L;
 	Color clrBackground = Color.WHITE;
 	Color clrSelected = Color.GREEN;
+	Color clrDead = Color.RED;
 	
 	@Override
     public Component getListCellRendererComponent(JList<? extends Combatant> list, Combatant combatant, int index,
@@ -19,12 +21,14 @@ public class CustomListRenderer extends JLabel implements ListCellRenderer<Comba
 		setOpaque(true);
 		
         String name = combatant.getName();
-        int initiative = combatant.getInitiative();
+        //int initiative = combatant.getInitiative();
         int health = combatant.getHealth();
          
         setText(name + "  " + health);
         if(isSelected) {
         	setBackground(clrSelected);
+        }else if(health == 0){
+        	setBackground(clrDead);
         }else {
         	setBackground(clrBackground);
         }

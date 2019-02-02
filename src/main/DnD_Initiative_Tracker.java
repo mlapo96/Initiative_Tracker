@@ -3,8 +3,6 @@ package main;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -13,15 +11,18 @@ public class DnD_Initiative_Tracker {
 	
 	static boolean DEBUG = true;
 	
-	static JButton newEncounter;
+	static JButton addCombatant;
 	static JButton startEncounter;
 	static JButton endEncounter;
 	static JButton nextTurn;
 	static JButton previousTurn;
-	
+	static JButton takeDamage;
+
 	static JTextField txtPlayerName;
 	static JTextField txtPlayerInitiative;
 	static JTextField txtPlayerHealth;
+	static JTextField txtDamage;
+
 	
 	static JLabel lblTurnNumber;
 	static JLabel lblPlayerTurn;
@@ -53,7 +54,7 @@ public class DnD_Initiative_Tracker {
 		}
 		
 		// Adds a new Combatant to the list
-		newEncounter.addActionListener(new ActionListener() {
+		addCombatant.addActionListener(new ActionListener() {
 		       public void actionPerformed(ActionEvent ae){
 		           combatantList.add(new Combatant(txtPlayerName.getText(), 
 		        		   				 Integer.parseInt(txtPlayerInitiative.getText()), 
@@ -65,7 +66,6 @@ public class DnD_Initiative_Tracker {
 		           for(int i=0; i<combatantList.size(); i++) {
 		        	   listModel.addElement(combatantList.get(i));
 		           }
-		           
 		           txtPlayerName.setText("");
 		           txtPlayerInitiative.setText("");
 		           txtPlayerHealth.setText("");
@@ -79,15 +79,18 @@ public class DnD_Initiative_Tracker {
 		    	   orderedCombatantList = orderList(combatantList);
 		           for(int i=0; i<orderedCombatantList.size(); i++) {
 		        	   listModel.addElement(orderedCombatantList.get(i));
+		        	   
+		        	   // adds combatant to the combobox
+		        	   cboDamage.addItem(orderedCombatantList.get(i).getName());
 		           }
 		           listview.setSelectedIndex(0);
 		           lblTurnNumber.setText("Turn: " + Integer.toString(turnNumber));
 		           String whosTurn = orderedCombatantList.get(listview.getSelectedIndex()).getName();
-		           lblPlayerTurn.setText(whosTurn + "'s turn");
+		           lblPlayerTurn.setText(whosTurn + "'s turn");       
 		       }
 		});
 		
-		// Orders the list of Combatants and starts the encounter
+		// Clears the encounter and all lists
 		endEncounter.addActionListener(new ActionListener() {
 		       public void actionPerformed(ActionEvent ae){
 		    	   listModel.clear();
@@ -111,6 +114,19 @@ public class DnD_Initiative_Tracker {
 		    	   lblTurnNumber.setText("Turn: " + Integer.toString(turnNumber));
 		    	   String whosTurn = orderedCombatantList.get(listview.getSelectedIndex()).getName();
 		           lblPlayerTurn.setText(whosTurn + "'s turn");
+		       }
+		});
+		
+		// Calculates damage and new health on selected target
+		takeDamage.addActionListener(new ActionListener() {
+		       public void actionPerformed(ActionEvent ae){
+		    	   String target = (String) cboDamage.getSelectedItem();
+		    	   for(int i=0; i<orderedCombatantList.size(); i++) {
+		    		   if(orderedCombatantList.get(i).getName() == target) {
+		    			   orderedCombatantList.get(i).takeDamage(Integer.parseInt(txtDamage.getText()));
+		    		   }
+		    	   }
+		    	   listview.updateUI();
 		       }
 		});
 
@@ -145,19 +161,21 @@ public class DnD_Initiative_Tracker {
 
                
         // Add buttons
-        newEncounter = new JButton("Add Combatant");
+        addCombatant = new JButton("Add Combatant");
         startEncounter = new JButton("Start");
         endEncounter = new JButton("End");
         nextTurn = new JButton("Next");
         previousTurn = new JButton("Previous");
+        takeDamage = new JButton("Take Damage");
 
         
-        newEncounter.setBounds(500, 50, 150, 40);
+        addCombatant.setBounds(500, 50, 150, 40);
         startEncounter.setBounds(650, 50, 150, 40);
         endEncounter.setBounds(800, 50, 150, 40);
         nextTurn.setBounds(50, 700, 200, 50);
-        
-        frame.add(newEncounter);
+        takeDamage.setBounds(500, 200, 150, 40);
+
+        frame.add(addCombatant);
         frame.add(startEncounter);        
         frame.add(endEncounter);
         frame.add(nextTurn);
@@ -166,7 +184,8 @@ public class DnD_Initiative_Tracker {
         txtPlayerName = new JTextField();
         txtPlayerInitiative = new JTextField();
         txtPlayerHealth = new JTextField();
-        
+        txtDamage = new JTextField();
+
         JLabel lblPlayerName = new JLabel("Name");
         JLabel lblPlayerInitiative = new JLabel("Initiative");
         JLabel lblPlayerHealth = new JLabel("Health");
@@ -181,8 +200,13 @@ public class DnD_Initiative_Tracker {
         lblPlayerInitiative.setBounds(200, 10, 150, 40);
         lblPlayerHealth.setBounds(350, 10, 150, 40);
         lblTurnNumber.setBounds(300, 100, 100, 40);
-        lblPlayerTurn.setBounds(300, 150, 100, 40);
-
+        lblPlayerTurn.setBounds(400, 100, 100, 40);
+        txtDamage.setBounds(400, 200, 100, 40);
+        
+        // Combobox
+        cboDamage = new JComboBox<String>();
+        cboDamage.setBounds(300, 200, 100, 40);
+        
         // Add Listview
         listModel = new DefaultListModel<>();
         listview = new JList<Combatant>(listModel);
@@ -199,6 +223,10 @@ public class DnD_Initiative_Tracker {
         frame.add(lblTurnNumber);
         frame.add(lblPlayerTurn);
 
+        frame.add(takeDamage);
+        frame.add(txtDamage);
+        frame.add(cboDamage);
+        
         frame.add(listview);
         
         
