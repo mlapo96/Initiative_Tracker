@@ -15,13 +15,12 @@ public class CustomListRenderer extends JLabel implements ListCellRenderer<Comba
 	Color clrDead = Color.RED;
 	
 	@Override
-    public Component getListCellRendererComponent(JList<? extends Combatant> list, Combatant combatant, int index,
-        boolean isSelected, boolean cellHasFocus) {
-          
+	public Component getListCellRendererComponent(JList<? extends Combatant> list, Combatant combatant, int index,
+		boolean isSelected, boolean cellHasFocus) {
+        
 		setOpaque(true);
 		
         String name = combatant.getName();
-        //int initiative = combatant.getInitiative();
         int health = combatant.getHealth();
          
         setText(name + "  " + health);
