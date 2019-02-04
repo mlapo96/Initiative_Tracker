@@ -115,6 +115,8 @@ public class DnD_Initiative_Tracker {
 		    	   turnNumber = 0;
 		    	   lblTurnNumber.setText("Turn: " + Integer.toString(turnNumber));
 		           lblPlayerTurn.setText("Player's turn");
+		           cboDamage.removeAllItems();
+		           cboHeal.removeAllItems();
 		       }
 		});
 		
