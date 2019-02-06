@@ -279,26 +279,31 @@ public class DnD_Initiative_Tracker {
         cboHeal = new JComboBox<String>();
         txtHeal = new JTextField();
         takeHeal = new JButton("Heal");
+        JTextArea txtNotes = new JTextArea("");
         
         JLabel lblSelectCharacter = new JLabel("Select Player");
         JLabel lblValue = new JLabel("Value");
         JLabel lblAction = new JLabel("Action");
-
+        JLabel lblNotes = new JLabel("Notes");
+        
         cboDamage.setBounds(50, 50, 150, 50);
         txtDamage.setBounds(225, 50, 50, 50);
         takeDamage.setBounds(300, 50, 100, 50);       
         cboHeal.setBounds(50, 150, 150, 50);
         txtHeal.setBounds(225, 150, 50, 50);
         takeHeal.setBounds(300, 150, 100, 50);
+        txtNotes.setBounds(50, 250, 300, 300);
         
         lblSelectCharacter.setBounds(50, 15, 150, 40);
         lblValue.setBounds(225, 15, 50, 40);
         lblAction.setBounds(300, 15, 100, 40);
-    
+        lblNotes.setBounds(50, 200, 100, 50);
+        
         // adding labels to labelList
         labelList.add(lblSelectCharacter);
         labelList.add(lblValue);
         labelList.add(lblAction);
+        labelList.add(lblNotes);
         
         // add to body panel
         pnlBody.add(takeDamage);
@@ -307,9 +312,11 @@ public class DnD_Initiative_Tracker {
         pnlBody.add(cboHeal);
         pnlBody.add(txtHeal);
         pnlBody.add(takeHeal);
+        pnlBody.add(txtNotes);
         pnlBody.add(lblSelectCharacter);
         pnlBody.add(lblValue);
         pnlBody.add(lblAction);
+        pnlBody.add(lblNotes);
           
         // Set Font ------------------------------------------------------
         Font fntHeader = new Font(Font.SANS_SERIF, Font.BOLD, 17);
