@@ -25,7 +25,7 @@ public class CustomListRenderer extends JLabel implements ListCellRenderer<Comba
         
         // Formatting to fill entire cell width
         String emptyChars = "";
-        for(int i=0; i<35; i++) {
+        for(int i=0; i<24; i++) {
         	emptyChars += " ";
         }
         for(int i=0; i<name.length(); i++) {

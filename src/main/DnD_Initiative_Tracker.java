@@ -13,7 +13,7 @@ import javax.swing.*;
 public class DnD_Initiative_Tracker {
 	
 	// Populate list for debugging
-	static boolean DEBUG = false;
+	static boolean DEBUG = true;
 	
 	// Header Panel
 	static JButton addCombatant;
@@ -213,7 +213,7 @@ public class DnD_Initiative_Tracker {
         JLabel lblPlayerInitiative = new JLabel("Initiative");
         JLabel lblPlayerHealth = new JLabel("Health");
         
-        lblPlayerName.setBounds(50, 10, 50, 40);
+        lblPlayerName.setBounds(50, 10, 100, 40);
         lblPlayerInitiative.setBounds(200, 10, 150, 40);
         lblPlayerHealth.setBounds(350, 10, 150, 40);
         txtPlayerName.setBounds(50, 50, 150, 40);
@@ -289,7 +289,7 @@ public class DnD_Initiative_Tracker {
         txtNotes.setBounds(50, 250, 350, 300);
         
         lblSelectCharacter.setBounds(50, 15, 150, 40);
-        lblValue.setBounds(225, 15, 50, 40);
+        lblValue.setBounds(225, 15, 100, 40);
         lblAction.setBounds(300, 15, 100, 40);
         lblNotes.setBounds(50, 200, 100, 50);
         
