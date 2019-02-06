@@ -13,7 +13,7 @@ import javax.swing.*;
 public class DnD_Initiative_Tracker {
 	
 	// Populate list for debugging
-	static boolean DEBUG = true;
+	static boolean DEBUG = false;
 	
 	// Header Panel
 	static JButton addCombatant;
