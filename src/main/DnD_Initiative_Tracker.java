@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.GraphicsEnvironment;
 
 import javax.swing.*;
 
@@ -49,12 +48,6 @@ public class DnD_Initiative_Tracker {
 	static Color clrBody = Color.decode("#D7F2BA");
 	
 	public static void main(String[] args) {
-        
-	    //String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-
-	    //for ( int i = 0; i < fonts.length; i++ ){
-	    //	System.out.println(fonts[i]);
-	    //}
 		
 		// Create the main window
 		JFrame frame = new JFrame("InitiativeTracker");
@@ -256,6 +249,7 @@ public class DnD_Initiative_Tracker {
         lblPlayerTurn = new JLabel("Player's Turn"); 
         
         listview.setBounds(50, 50, 200, 450);
+        listview.setFixedCellHeight(30);
 
         listview.setLayout(null);
         nextTurn.setBounds(50, 530, 200, 40);
@@ -292,7 +286,7 @@ public class DnD_Initiative_Tracker {
         cboHeal.setBounds(50, 150, 150, 50);
         txtHeal.setBounds(225, 150, 50, 50);
         takeHeal.setBounds(300, 150, 100, 50);
-        txtNotes.setBounds(50, 250, 300, 300);
+        txtNotes.setBounds(50, 250, 350, 300);
         
         lblSelectCharacter.setBounds(50, 15, 150, 40);
         lblValue.setBounds(225, 15, 50, 40);

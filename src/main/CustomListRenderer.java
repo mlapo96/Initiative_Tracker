@@ -22,8 +22,18 @@ public class CustomListRenderer extends JLabel implements ListCellRenderer<Comba
 		
         String name = combatant.getName();
         int health = combatant.getHealth();
-         
-        setText(name + "  " + health);
+        
+        // Formatting to fill entire cell width
+        String emptyChars = "";
+        for(int i=0; i<35; i++) {
+        	emptyChars += " ";
+        }
+        for(int i=0; i<name.length(); i++) {
+        	emptyChars = emptyChars.substring(0, emptyChars.length()-1);
+        }
+
+        // Setting cell text and background colors
+        setText(name + emptyChars + "Health: " + health);
         if(isSelected) {
         	setBackground(clrSelected);
         }else if(health == 0){
